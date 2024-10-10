@@ -32,6 +32,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>CapyIcone.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="bc-fips-1.0.2, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\itext.bouncy-castle-fips-adapter.8.0.5\lib\netstandard2.0\bc-fips-1.0.2.dll</HintPath>
@@ -237,6 +240,7 @@
     <None Include="Resources\FindDocument.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="CapyIcone.ico" />
     <Content Include="Imagens\CapyIcone.ico" />
     <Content Include="Imagens\Carregar.png" />
     <Content Include="Imagens\CodeImage.jpg" />
