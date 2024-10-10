@@ -1,0 +1,12 @@
+# Ignorar arquivos binários gerados
+bin/
+obj/
+
+# Ignorar arquivos de configuração sensíveis
+config.json
+
+# Ignorar arquivos de log
+*.log
+
+# Ignorar pastas específicas do sistema
+.vs/
