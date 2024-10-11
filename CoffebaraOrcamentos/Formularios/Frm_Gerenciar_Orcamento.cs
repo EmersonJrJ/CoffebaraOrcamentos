@@ -11,7 +11,7 @@ namespace WindowsFormsEstudoPessoal.Formularios
     public partial class Frm_Gerenciar_Orcamento : Form
     {
 
-
+        string testGit;
         private List<Produto> listasDeProdutosGlobal = new List<Produto>();
         private Cliente clienteGlobal = new Cliente();
         public bool formularioCarregadoViaBotaoCarregar;
