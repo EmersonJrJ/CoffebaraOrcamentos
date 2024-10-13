@@ -23,25 +23,27 @@ namespace WindowsFormsEstudoPessoal.Formularios
             Lbl_Email_Emissor.Text = Admin.Email;
             Lbl_Telefone_Emissor.Text = Admin.telefone.ToString();
         }
-        
+
         public bool CarregarCliente()
         {
-            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            try
             {
-                string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "Coffebara Arquivos", "Clientes");
-                if (!Directory.Exists(path))
-                    Directory.CreateDirectory(path);
-                openFileDialog.InitialDirectory = path;
-                openFileDialog.Filter = "Arquivo JSON (*.json)|*.json|Todos os Arquivos (*.*)|*.*";
-                openFileDialog.Title = "Selecionar Arquivo de Cliente";
-
-                if (openFileDialog.ShowDialog() != DialogResult.OK)
-                    return false;
-
-                string fileName = openFileDialog.FileName;
-
-                try
+                using (OpenFileDialog openFileDialog = new OpenFileDialog())
                 {
+                    string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "Coffebara Arquivos", "Clientes");
+
+                    if (!Directory.Exists(path))
+                        Directory.CreateDirectory(path);
+
+                    openFileDialog.InitialDirectory = path;
+                    openFileDialog.Filter = "Arquivo JSON (*.json)|*.json|Todos os Arquivos (*.*)|*.*";
+                    openFileDialog.Title = "Selecionar Arquivo de Cliente";
+
+                    if (openFileDialog.ShowDialog() != DialogResult.OK)
+                        return false;
+
+                    string fileName = openFileDialog.FileName;
+
                     Cliente cliente = JsonConvert.DeserializeObject<Cliente>(File.ReadAllText(fileName));
 
                     Cls_Uteis.CarregarProdutosOrcamento(cliente, this.Pnl_Mostrar_Produtos);
@@ -51,7 +53,6 @@ namespace WindowsFormsEstudoPessoal.Formularios
                     this.Mtbx_Telefone_Cliente.Text = cliente.Telefone;
                     this.Tbx_Cep_Cliente.Text = cliente.Endereco.Cep;
                     this.Mtbx_Data_Orcamento.Text = cliente.Orcamento.Data.ToString("dd/MM/yyyy");
-
 
                     this.listasDeProdutosGlobal = cliente.Produtos;
                     this.clienteGlobal = cliente;
@@ -92,14 +93,14 @@ namespace WindowsFormsEstudoPessoal.Formularios
                             break;
                     }
                 }
-                catch (Exception ex)
-                {
-                    int num = (int)MessageBox.Show("Erro ao carregar cliente: " + ex.Message);
-                }
                 return true;
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao carregar cliente: " + ex.Message);
+                return false;
+            }
         }
-
 
         private void Btn_Salvar_Orcamento_Click(object sender, EventArgs e)
         {
