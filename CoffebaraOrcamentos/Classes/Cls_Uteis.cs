@@ -71,15 +71,61 @@ namespace WindowsFormsEstudoPessoal
                 return false;
             }
         }
+        public static DateTime ConverterStringParaData(string dataTexto)
+        {
+            DateTime dataConvertida;
+            DateTime.TryParse(dataTexto, out dataConvertida);
+            return dataConvertida;
+        }
+        public static void AtualizarGarantiaCliente(Cliente cliente, RadioButton b1, RadioButton b2, MaskedTextBox tbox)
+        {
+            switch (cliente.PossuiGarantia)
+            {
+                case "SIM":
+                    b1.Checked = true;
+                    tbox.Text = cliente.Orcamento.Validade.ToString("dd/MM/yyyy");
+                    tbox.BackColor = Color.LightGreen;
+                    break;
 
-        public static async Task<Cep> GeraJSONCEPAsync(string CEP, Control tbox)
+                case "NAO":
+                    b2.Checked = true;
+                    tbox.Clear();
+                    tbox.BackColor = SystemColors.Window;
+                    break;
+                default:
+                    b1.Checked = false;
+                    b2.Checked = false;
+                    break;
+            }
+        }
+        public static void AtualizarRadioButtonsFormaDePagamento(Cliente cliente, RadioButton b1, RadioButton b2, RadioButton b3)
+        {
+            switch (cliente.FormaDePagamento)
+            {
+                case "PIX":
+                    b1.Checked = true;
+                    break;
+                case "Dinheiro":
+                    b2.Checked = true;
+                    break;
+                case "Cartao":
+                    b3.Checked = true;
+                    break;
+                default:
+                    b1.Checked = false;
+                    b2.Checked = false;
+                    b3.Checked = false;
+                    break;
+            }
+        }
+        public static async Task<Endereco> GeraJSONCEPAsync(string CEP, Control tbox)
         {
             using (HttpClient client = new HttpClient())
             {
                 string url = $"https://viacep.com.br/ws/{CEP}/json/";
                 string resposta = await client.GetStringAsync(url);
 
-                Cep endereco = JsonConvert.DeserializeObject<Cep>(resposta);
+                Endereco endereco = JsonConvert.DeserializeObject<Endereco>(resposta);
 
                 if (resposta.Contains("erro"))
                 {
