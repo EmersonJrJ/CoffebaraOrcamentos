@@ -23,7 +23,7 @@ namespace WindowsFormsEstudoPessoal.Formularios
             Lbl_Email_Emissor.Text = Admin.Email;
             Lbl_Telefone_Emissor.Text = Admin.telefone.ToString();
         }
-
+         
         public bool CarregarCliente()
         {
             try
@@ -53,45 +53,11 @@ namespace WindowsFormsEstudoPessoal.Formularios
                     this.Mtbx_Telefone_Cliente.Text = cliente.Telefone;
                     this.Tbx_Cep_Cliente.Text = cliente.Endereco.Cep;
                     this.Mtbx_Data_Orcamento.Text = cliente.Orcamento.Data.ToString("dd/MM/yyyy");
-
                     this.listasDeProdutosGlobal = cliente.Produtos;
                     this.clienteGlobal = cliente;
 
-                    switch (cliente.PossuiGarantia)
-                    {
-                        case "SIM":
-                            this.Rbtn_SIM.Checked = true;
-                            this.Mtbx_Validade_Orcamento.Text = cliente.Orcamento.Validade.ToString("dd/MM/yyyy");
-                            this.Mtbx_Validade_Orcamento.BackColor = Color.LightGreen;
-                            break;
-                        case "NAO":
-                            this.Rbtn_NAO.Checked = true;
-                            this.Mtbx_Validade_Orcamento.Clear();
-                            this.Mtbx_Validade_Orcamento.BackColor = SystemColors.Window;
-                            break;
-                        default:
-                            this.Rbtn_SIM.Checked = false;
-                            this.Rbtn_NAO.Checked = false;
-                            break;
-                    }
-
-                    switch (cliente.FormaDePagamento)
-                    {
-                        case "PIX":
-                            this.Rbtn_PIX.Checked = true;
-                            break;
-                        case "Dinheiro":
-                            this.Rbtn_Dinheiro.Checked = true;
-                            break;
-                        case "Cartao":
-                            this.Rbtn_Cartao.Checked = true;
-                            break;
-                        default:
-                            this.Rbtn_PIX.Checked = false;
-                            this.Rbtn_Dinheiro.Checked = false;
-                            this.Rbtn_Cartao.Checked = false;
-                            break;
-                    }
+                    Cls_Uteis.AtualizarGarantiaCliente(cliente, Rbtn_SIM, Rbtn_NAO, Mtbx_Validade_Orcamento);
+                    Cls_Uteis.AtualizarRadioButtonsFormaDePagamento(cliente, Rbtn_PIX, Rbtn_Dinheiro, Rbtn_Cartao);
                 }
                 return true;
             }
@@ -580,11 +546,11 @@ namespace WindowsFormsEstudoPessoal.Formularios
 
             try
             {
-                Cep cep = await Cls_Uteis.GeraJSONCEPAsync(text, (Control)this.Tbx_Cep_Cliente);
-                this.Tbx_Localidade_Cliente.Text = cep.localidade;
-                this.Tbx_Estado_Cliente.Text = cep.estado;
-                this.Tbx_Logradouro_Cliente.Text = cep.logradouro;
-                this.Tbx_Bairro_Cliente.Text = cep.bairro;
+                Endereco endereco = await Cls_Uteis.GeraJSONCEPAsync(text, (Control)this.Tbx_Cep_Cliente);
+                this.Tbx_Localidade_Cliente.Text = endereco.Localidade;
+                this.Tbx_Estado_Cliente.Text = endereco.Estado;
+                this.Tbx_Logradouro_Cliente.Text = endereco.Logradouro;
+                this.Tbx_Bairro_Cliente.Text = endereco.Bairro;
             }
             catch (Exception ex)
             {

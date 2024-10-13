@@ -10,7 +10,6 @@ namespace WindowsFormsEstudoPessoal
         public string Email { get; set; }
         public Endereco Endereco { get; set; }
         public Orcamento Orcamento { get; set; }
-        public Cep Cep { get; set; }
         public string FormaDePagamento { get; set; }
         public string PossuiGarantia { get; set; }
 

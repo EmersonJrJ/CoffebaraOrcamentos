@@ -148,7 +148,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\Admin.cs" />
-    <Compile Include="Classes\Cep.cs" />
     <Compile Include="Classes\Cliente.cs" />
     <Compile Include="Classes\Cls_Uteis.cs" />
     <Compile Include="Classes\Endereco.cs" />
