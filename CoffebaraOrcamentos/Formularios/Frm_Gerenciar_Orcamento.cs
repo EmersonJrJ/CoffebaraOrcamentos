@@ -40,7 +40,15 @@ namespace WindowsFormsEstudoPessoal.Formularios
             clienteGlobal.FormaDePagamento = Cls_Uteis.RecebeNomeRadioButtonPagamento(Rbtn_PIX, Rbtn_Dinheiro, Rbtn_Cartao);
             clienteGlobal.Orcamento.Data = Cls_Uteis.ConverterStringParaData(Mtbx_Data_Orcamento.Text);
             clienteGlobal.Orcamento.Validade = Cls_Uteis.ConverterStringParaData(Mtbx_Validade_Orcamento.Text);
-
+        }
+        private void atualizarClienteGenerico(Cliente cliente)
+        {
+            this.Tbx_Nome_Cliente.Text = cliente.Nome;
+            this.Tbx_Email_Cliente.Text = cliente.Email;
+            this.Mtbx_Telefone_Cliente.Text = cliente.Telefone;
+            this.Tbx_Cep_Cliente.Text = cliente.Endereco.Cep;
+            this.Mtbx_Data_Orcamento.Text = cliente.Orcamento.Data.ToString("dd/MM/yyyy");
+            this.listasDeProdutosGlobal = cliente.Produtos;
         }
 
         public bool CarregarCliente()
@@ -67,13 +75,8 @@ namespace WindowsFormsEstudoPessoal.Formularios
 
                     Cls_Uteis.CarregarProdutosOrcamento(cliente, this.Pnl_Mostrar_Produtos);
 
-                    this.Tbx_Nome_Cliente.Text = cliente.Nome;
-                    this.Tbx_Email_Cliente.Text = cliente.Email;
-                    this.Mtbx_Telefone_Cliente.Text = cliente.Telefone;
-                    this.Tbx_Cep_Cliente.Text = cliente.Endereco.Cep;
-                    this.Mtbx_Data_Orcamento.Text = cliente.Orcamento.Data.ToString("dd/MM/yyyy");
-                    this.listasDeProdutosGlobal = cliente.Produtos;
-                    this.clienteGlobal = cliente;
+                    atualizarClienteGenerico(cliente);
+                    clienteGlobal = cliente;
 
                     Cls_Uteis.AtualizarGarantiaCliente(cliente, Rbtn_SIM, Rbtn_NAO, Mtbx_Validade_Orcamento);
                     Cls_Uteis.AtualizarRadioButtonsFormaDePagamento(cliente, Rbtn_PIX, Rbtn_Dinheiro, Rbtn_Cartao);
