@@ -23,24 +23,7 @@ namespace WindowsFormsEstudoPessoal.Formularios
             Lbl_Email_Emissor.Text = Admin.Email;
             Lbl_Telefone_Emissor.Text = Admin.telefone.ToString();
         }
-        private void AtualizarClienteGlobal()
-        {
-            //Dados Pessoais
-            clienteGlobal.Nome = Tbx_Nome_Cliente.Text;
-            clienteGlobal.Email = Tbx_Email_Cliente.Text;
-            clienteGlobal.Telefone = Mtbx_Telefone_Cliente.Text;
-            //Dados Endereco
-            clienteGlobal.Endereco.Cep = Tbx_Cep_Cliente.Text;
-            clienteGlobal.Endereco.Estado = Tbx_Estado_Cliente.Text;
-            clienteGlobal.Endereco.Localidade = Tbx_Localidade_Cliente.Text;
-            clienteGlobal.Endereco.Logradouro = Tbx_Logradouro_Cliente.Text;
-            clienteGlobal.Endereco.Bairro = Tbx_Bairro_Cliente.Text;
-            //Dados Garantia
-            clienteGlobal.PossuiGarantia = Cls_Uteis.RecebeNomeRadioButtonGarantia(Rbtn_SIM, Rbtn_NAO);
-            clienteGlobal.FormaDePagamento = Cls_Uteis.RecebeNomeRadioButtonPagamento(Rbtn_PIX, Rbtn_Dinheiro, Rbtn_Cartao);
-            clienteGlobal.Orcamento.Data = Cls_Uteis.ConverterStringParaData(Mtbx_Data_Orcamento.Text);
-            clienteGlobal.Orcamento.Validade = Cls_Uteis.ConverterStringParaData(Mtbx_Validade_Orcamento.Text);
-        }
+       
         private void atualizarClienteGenerico(Cliente cliente)
         {
             this.Tbx_Nome_Cliente.Text = cliente.Nome;
