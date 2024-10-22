@@ -525,11 +525,11 @@ namespace WindowsFormsEstudoPessoal
                             .SetFont(font)
                             .SetFontSize(12));
 
-                        document.Add(new Paragraph($"Endereço: {Admin.telefone}")
+                        document.Add(new Paragraph($"Telefone: {Admin.telefone}")
                             .SetFont(font)
                             .SetFontSize(12));
 
-                        document.Add(new Paragraph($"Telefone: {Admin.Email}")
+                        document.Add(new Paragraph($"E-mail: {Admin.Email}")
                             .SetFont(font)
                             .SetFontSize(12));
 
