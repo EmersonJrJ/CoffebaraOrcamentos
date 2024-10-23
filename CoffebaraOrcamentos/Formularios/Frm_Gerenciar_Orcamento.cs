@@ -60,6 +60,7 @@ namespace WindowsFormsEstudoPessoal.Formularios
 
                     atualizarClienteGenerico(cliente);
                     clienteGlobal = cliente;
+                    AtualizarValorTotal();
 
                     Cls_Uteis.AtualizarGarantiaCliente(cliente, Rbtn_SIM, Rbtn_NAO, Mtbx_Validade_Orcamento);
                     Cls_Uteis.AtualizarRadioButtonsFormaDePagamento(cliente, Rbtn_PIX, Rbtn_Dinheiro, Rbtn_Cartao);

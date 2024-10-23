@@ -129,8 +129,10 @@ namespace WindowsFormsEstudoPessoal
 
                 if (resposta.Contains("erro"))
                 {
+                    Cursor.Current = Cursors.WaitCursor;
                     Thread.Sleep(3000);
                     ColorirTboxVermelho(tbox);
+                    Cursor.Current = Cursors.Default;
 
                     DialogResult resultado = MessageBox.Show("CEP inválido. Por favor, insira um CEP válido.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     if (resultado == DialogResult.OK)
@@ -143,8 +145,9 @@ namespace WindowsFormsEstudoPessoal
                 {
                     ColorirTboxVerde(tbox);
                 }
-
+                Cursor.Current = Cursors.WaitCursor;
                 Thread.Sleep(3000);
+                Cursor.Current = Cursors.Default;
                 return endereco;
             }
         }
@@ -445,7 +448,6 @@ namespace WindowsFormsEstudoPessoal
             System.Windows.Forms.Label produtoLabel = new System.Windows.Forms.Label
             {
                 Text = $"{nome}  R$ {valor:F2}",
-                Font = new Font("Arial", 9, FontStyle.Bold),
                 AutoSize = true,
                 Margin = new Padding(5)
             };
