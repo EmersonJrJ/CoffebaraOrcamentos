@@ -307,7 +307,6 @@
             this.Tbx_Cep_Cliente.TabIndex = 3;
             this.Tbx_Cep_Cliente.TextChanged += new System.EventHandler(this.Tbx_Cep_Cliente_TextChanged);
             this.Tbx_Cep_Cliente.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Tbx_Cep_Cliente_KeyPress);
-            this.Tbx_Cep_Cliente.Leave += new System.EventHandler(this.Tbx_Cep_Cliente_Leave);
             // 
             // Gb_Dados_Orcamento
             // 

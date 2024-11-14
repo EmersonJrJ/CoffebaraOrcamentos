@@ -226,18 +226,6 @@ namespace WindowsFormsEstudoPessoal.Formularios
             }
         }
 
-        private void Tbx_Cep_Cliente_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                Cls_Uteis.ValidaTamanhoCep(this.Tbx_Cep_Cliente.Text);
-            }
-            catch (Exception ex)
-            {
-                int num = (int)MessageBox.Show("Erro ao validar os dados: " + ex.Message);
-            }
-        }
-
         private void Btn_Adicionar_Produto_Click(object sender, EventArgs e)
         {
             try
