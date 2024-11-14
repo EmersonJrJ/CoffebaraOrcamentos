@@ -527,17 +527,7 @@ namespace WindowsFormsEstudoPessoal.Formularios
             }
         }
 
-        private void Mtbx_Data_Orcamento_Enter(object sender, EventArgs e)
-        {
-            try
-            {
-                Cls_Uteis.validaData((Control)this.Mtbx_Data_Orcamento);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Erro ao validar os dados: " + ex.Message);
-            }
-        }
+       
 
         private async void Tbx_Cep_Cliente_TextChanged(object sender, EventArgs e)
         {
@@ -603,6 +593,33 @@ namespace WindowsFormsEstudoPessoal.Formularios
                 MessageBox.Show("Erro ao validar os dados: " + ex.Message);
             }
         }
+
+        private void Mtbx_Data_Orcamento_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Mtbx_Data_Orcamento.BackColor == Color.LightCoral)
+                {
+                    DialogResult result = MessageBox.Show("A data está desatualizada. Deseja atualizar para a data atual?","Data Desatualizada",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Warning
+                    );
+                    if (result == DialogResult.Yes)
+                    {
+                        Mtbx_Data_Orcamento.Text = DateTime.Now.ToString("dd/MM/yyyy");
+                    }
+                    else if(result == DialogResult.No)
+                    {
+                        Mtbx_Data_Orcamento.BackColor = Color.LightGreen;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ocorreu um erro ao definir a data: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
     }
 }
 
