@@ -189,11 +189,13 @@ namespace WindowsFormsEstudoPessoal.Formularios
             }
             return false;
         }
-
+        private bool estaLimpando = false;
         private void LimparFormulario(Cliente c)
         {
             try
             {
+                estaLimpando = true;
+
                 this.Tbx_Nome_Cliente.Clear();
                 this.Mtbx_Telefone_Cliente.Clear();
                 this.Tbx_Email_Cliente.Clear();
@@ -215,6 +217,7 @@ namespace WindowsFormsEstudoPessoal.Formularios
                 this.Mtbx_Data_Orcamento.BackColor = SystemColors.Window;
                 this.Tbx_Cep_Cliente.BackColor = SystemColors.Window;
 
+                this.Lbl_Total.Text = "";
                 this.Pnl_Mostrar_Produtos.Controls.Clear();
 
 
@@ -584,6 +587,10 @@ namespace WindowsFormsEstudoPessoal.Formularios
 
         private void Mtbx_Data_Orcamento_Enter(object sender, EventArgs e)
         {
+            if (estaLimpando)
+            {
+                return;
+            }
             try
             {
                 if (Mtbx_Data_Orcamento.BackColor == Color.LightCoral)
